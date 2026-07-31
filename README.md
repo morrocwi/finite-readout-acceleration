@@ -1,5 +1,11 @@
 # Finite Readout Acceleration (FRA) — engineering library
 
+[![CI](https://github.com/morrocwi/finite-readout-acceleration/actions/workflows/ci.yml/badge.svg)](https://github.com/morrocwi/finite-readout-acceleration/actions/workflows/ci.yml)
+[![Coq](https://img.shields.io/badge/Coq-8.20%20·%205%20theorems%20axiom--free-blue?logo=coq&logoColor=white)](formal/)
+[![tests](https://img.shields.io/badge/tests-30%20passing-brightgreen)](tests/)
+[![release](https://img.shields.io/badge/release-v0.1.0-brightgreen)](https://github.com/morrocwi/finite-readout-acceleration/releases/tag/v0.1.0)
+[![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
+
 An implementation and engineering companion to Yaoharee Lahtee (2026),
 *"What a Finite Readout Need Not Compute: A Quotient Framework for Immediate
 Acceleration in Web, Cache, Database, and Vector Systems."*
@@ -190,6 +196,12 @@ itself (autoloaded options, object-cache coverage, hook count before
 - Not independently peer-reviewed. The tier discipline exists so a reader can
   check the claim at the level it was actually earned, rather than trust the
   library's own framing.
+
+## Contributing
+
+See `CONTRIBUTING.md` — the short version: pick a tier honestly, back every
+claim with a test in the same PR, no direct pushes to `main` (branch
+protection enforces this, including for maintainers).
 
 ## Provenance of this repository
 
