@@ -5,7 +5,7 @@ jobs:
   pytest:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with: { python-version: '3.11' }
       - name: install (editable) + pytest
@@ -19,7 +19,7 @@ jobs:
     # is reachable from outside the checkout.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with: { python-version: '3.11' }
       - name: install the package (build a wheel and install it)
@@ -40,7 +40,7 @@ jobs:
   coq:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       # Pin Coq 8.20 — the version formal/FRA_Closures.v is written and verified
       # against. docker-coq-action pulls a prebuilt coqorg/coq:8.20 image so CI
       # matches the exact version the axiom-free claim is a claim about.
