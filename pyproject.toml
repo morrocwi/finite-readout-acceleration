@@ -1,0 +1,26 @@
+[project]
+name = "finite-readout-acceleration"
+version = "0.1.0"
+description = "Engineering library for Finite Readout Acceleration (FRA): a quotient framework for deciding when a distinction is safe to stop computing, plus a break-even guard, a coverage-audited cache-safety linter, and two derived algorithms (BEVE cache eviction, FRAHistogram streaming quantiles)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Yaoharee Lahtee" }]
+keywords = ["caching", "performance", "readout", "quotient", "cache eviction", "streaming quantiles"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Software Development :: Libraries",
+]
+
+[project.urls]
+Repository = "https://github.com/morrocwi/finite-readout-acceleration"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
