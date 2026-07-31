@@ -1,0 +1,55 @@
+name: verify
+on: [push, pull_request]
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: install (editable) + pytest
+        run: pip install -e . pytest
+      - name: run the suite
+        run: pytest -q
+
+  install:
+    # Proves the built wheel is self-contained: `pip install .` + `import fra`
+    # works with no source tree present, and every registered closure/audit
+    # is reachable from outside the checkout.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: install the package (build a wheel and install it)
+        run: pip install .
+      - name: import + exercise from OUTSIDE the source tree
+        run: |
+          cd "$RUNNER_TEMP"
+          python3 -c "
+          import fra
+          assert len(fra.kinds()) >= 20, fra.kinds()
+          m = fra.CostModel(c_f=1.34, c_o=0.137)
+          assert abs(m.break_even_alpha() - 0.898) < 0.01
+          from fra.cache import BEVECache
+          from fra.histogram import FRAHistogram
+          print('installed import + exercise OK,', len(fra.kinds()), 'kinds')
+          "
+
+  coq:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Pin Coq 8.20 — the version formal/FRA_Closures.v is written and verified
+      # against. docker-coq-action pulls a prebuilt coqorg/coq:8.20 image so CI
+      # matches the exact version the axiom-free claim is a claim about.
+      - uses: coq-community/docker-coq-action@v1
+        with:
+          coq_version: '8.20'
+          ocaml_version: 'default'
+          custom_script: |
+            startGroup "verify formal core (compile the witness + Print Assumptions axiom-free)"
+              sudo chown -R "$(whoami)" .
+              bash formal/verify.sh
+            endGroup

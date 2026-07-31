@@ -22,5 +22,8 @@ Repository = "https://github.com/morrocwi/finite-readout-acceleration"
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools]
+packages = ["fra"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
