@@ -23,9 +23,10 @@ alternatives they are compared against, and that the work is not independently p
 These are the rules `CONTRIBUTING.md` already states; this file adds none of its own.
 
 - Do not overclaim.
-- Every function in `fra.core` is registered with a tier (`EXACT`, `Dr`, `finite_diagnostic`).
-  Pick the tier honestly; a `Dr`-tier closure needs its assumption written in the docstring and
-  passed to `assumption=` (both).
+- A new or changed closure or audit is registered with `register_closure(name, tier, ...)`, tier
+  one of `EXACT`, `Dr`, `finite_diagnostic`. Ordinary helpers (`kinds`, `describe`, `timed`, and
+  similar) are not closures and need no tier. Pick the tier honestly; a `Dr`-tier closure needs its
+  assumption written in the docstring and passed to `assumption=` (both).
 - A claim in `README.md` (a number, a "wins/loses" statement, a comparison) must be backed by a
   test in the same PR.
 - Branch, PR, merge. No direct pushes to `main`. One logical change per PR.
